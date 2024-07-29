@@ -6,6 +6,19 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+        backgroundColor: Colors.lightBlue[400],
+        foregroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back , color: Colors.white ,),),
+          title: Text(
+            'Inicio de Sesion',
+             style: TextStyle(color:Colors.white),
+             ),
+      ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Center(

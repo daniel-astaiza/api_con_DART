@@ -28,6 +28,19 @@ class HomePage extends StatelessWidget {
                   foregroundColor: Colors.lightBlue[400],
                 ),
               ),
+                ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/MenUser');
+                },
+                child: Text("Usuario"),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.lightBlue[400],
+                ),
+              ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/registro');
