@@ -1,3 +1,4 @@
+import 'package:api/src/controllers/Usert.dart';
 import 'package:flutter/material.dart';
 
 
@@ -13,7 +14,7 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  // Future<Users>? _futureUsers;
+  Future<Users>? _futureUsers;
 
   void _clearControllers() {
     _nameController.clear();
@@ -35,16 +36,16 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
         ),
-        title: Text(
+        title: const Text(
           'Registro',
           style: TextStyle(color: Colors.white),
         ),
       ),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -56,17 +57,17 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                     width: 100,
                     height: 100,
                   ),
-                  SizedBox(height: 10),
-                  Text(
+                  const SizedBox(height: 10),
+                  const Text(
                     "Regístrate",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _nameController,
                     decoration: InputDecoration(
                       labelText: "Nombres Completos",
-                      prefixIcon: Icon(Icons.person),
+                      prefixIcon: const Icon(Icons.person),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -78,12 +79,12 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
                       labelText: "Correo Electrónico",
-                      prefixIcon: Icon(Icons.email),
+                      prefixIcon: const Icon(Icons.email),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -97,12 +98,12 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _passwordController,
                     decoration: InputDecoration(
                       labelText: "Contraseña",
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -115,11 +116,11 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: "Confirmar Contraseña",
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -134,7 +135,7 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   SizedBox(
                     width: double.infinity,
                     height: 45,
@@ -142,36 +143,37 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           setState(() {
-                            // _futureUsers = createUsers(
-                            //   _nameController.text,
-                            //   _emailController.text,
-                            //   _passwordController.text,
-                            // );
+                            _futureUsers = createUsers(
+                              _nameController.text,
+                              _emailController.text,
+                              _passwordController.text,
+                            );
                           });
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Registro exitoso')),
+                            const SnackBar(content: Text('Registro exitoso')),
                           );
                           _clearControllers();
                           _navigateToLogin();
                         }
                       },
-                      child: Text("Registrarse"),
+                      child: const Text("Registrarse"),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlue[400],
                         foregroundColor: Colors.white,
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("¿Tienes una cuenta?"),
+                      const Text("¿Tienes una cuenta?"),
                       TextButton(
                         onPressed: () {
+                          // createUsers(_nameController.text, _emailController.text, _passwordController.text);
                           Navigator.pushNamed(context, '/login');
                         },
-                        child: Text(
+                        child: const Text(
                           "Inicia sesión",
                           style: TextStyle(color: Colors.blue),
                         ),

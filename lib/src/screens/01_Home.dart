@@ -1,3 +1,4 @@
+import 'package:api/src/screens/01_ModalUser.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -30,21 +31,8 @@ class HomePage extends StatelessWidget {
               ),
                 ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/MenUser');
-                },
-                child: Text("Usuario"),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.lightBlue[400],
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
                   Navigator.pushNamed(context, '/registro');
-                },
+                },   
                 child: Text("Registrarse"),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -79,7 +67,10 @@ class HomePage extends StatelessWidget {
                 ),
                 SizedBox(width: 10),
                 IconButton(onPressed: () {}, icon: Icon(Icons.favorite_border)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
+                IconButton(onPressed: () {
+                Navigator.pushNamed(context, '/MenUser');
+                 
+                }, icon: Icon(Icons.person))
               ],
             ),
             SizedBox(height: 12),

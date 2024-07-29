@@ -1,31 +1,42 @@
-import 'package:api/src/controllers/ConsultarUsuarios.dart';
+
 import 'package:flutter/material.dart';
+import 'package:api/src/controllers/ConsultarUsuarios.dart';
 
-void modalEventos(BuildContext context) {
-  dynamic fetchUsers;
-  consultarUsuarios().then((consultarUsuarios){
-    fetchUsers = consultarUsuarios;
-
-
-    showBottomSheet(
-      context: context, 
-      builder: (context){
-        return Scaffold(
-          appBar: AppBar(
+void ModalUsuariosFetch(BuildContext context) {
+  consultarUsuarios().then((usuarios) {
+    if (usuarios != null && usuarios.isNotEmpty) {
+      showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Usuarios'),
             actions: [
               Padding(padding: EdgeInsets.all(8),
               child: Icon(Icons.event),
               )
             ],
             backgroundColor: Colors.red[100],
-            title: Text('Usuarios'),
-          ),
-          body: Center(
-            child: Text(fetchUsers[0].name),
-          ),
-        );
-      });
-
+            ),
+            body: ListView.builder(
+              itemCount: usuarios.length,
+              itemBuilder: (context, index) {
+                final usuario = usuarios[index];
+                return Card(
+                  margin: EdgeInsets.all(8.0),
+                  elevation: 4.0,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.all(16.0),
+                    title: Text(usuario.name), 
+                    subtitle: Text(usuario.email), 
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      );
+    }
   });
-  
 }
+

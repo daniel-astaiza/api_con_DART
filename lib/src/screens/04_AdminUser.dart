@@ -44,14 +44,16 @@ class _MenuUsersState extends State<MenuUsers> {
             leading: Icon(Icons.account_circle),
             trailing: Icon(Icons.social_distance_outlined),
             onTap: () {
-               modalEventos(context);
+               ModalUsuariosFetch(context);
             },
           ),
           ListTile(
             title: Text('Solicitudes'),
             leading: Icon(Icons.message_sharp),
             trailing: Icon(Icons.airplay_rounded),
-            onTap: () {},
+            onTap: () {
+             
+            },
           ),
           ListTile(
             title: Text('Informes'),
