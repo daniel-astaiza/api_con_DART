@@ -1,7 +1,6 @@
 import 'package:api/src/controllers/Usert.dart';
 import 'package:flutter/material.dart';
 
-
 class PaginaRegistro extends StatefulWidget {
   const PaginaRegistro({Key? key}) : super(key: key);
 
@@ -22,8 +21,8 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
     _passwordController.clear();
   }
 
-  void _navigateToLogin() {
-    Navigator.pushNamed(context, '/login');
+  void _navigateToMenUser() {
+    Navigator.pushNamed(context, '/MenUser');
   }
 
   @override
@@ -153,7 +152,7 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                             const SnackBar(content: Text('Registro exitoso')),
                           );
                           _clearControllers();
-                          _navigateToLogin();
+                          _navigateToMenUser(); // Cambiado a la ruta /MenUser
                         }
                       },
                       child: const Text("Registrarse"),
@@ -170,7 +169,6 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                       const Text("¿Tienes una cuenta?"),
                       TextButton(
                         onPressed: () {
-                          // createUsers(_nameController.text, _emailController.text, _passwordController.text);
                           Navigator.pushNamed(context, '/login');
                         },
                         child: const Text(
