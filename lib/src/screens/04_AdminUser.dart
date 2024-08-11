@@ -1,5 +1,4 @@
 import 'package:api/src/screens/01_ModalUser.dart';
-import 'package:api/src/screens/_ModalConsultarUsuarios.dart';
 import 'package:flutter/material.dart';
 
 class MenuUsers extends StatefulWidget {

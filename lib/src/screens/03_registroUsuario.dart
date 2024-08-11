@@ -1,4 +1,4 @@
-import 'package:api/src/controllers/Usert.dart';
+import 'package:api/src/controllers/ConsultarUsuarios.dart';
 import 'package:flutter/material.dart';
 
 class PaginaRegistro extends StatefulWidget {

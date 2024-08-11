@@ -33,23 +33,33 @@ class Users {
   String get getId => id; // Si prefieres, puedes llamar al getter 'getId' en lugar de solo 'id'
 }
 
+
 Future<List<Users>> consultUsers() async {
   final response = await http.get(
-    Uri.parse('https://nodejs-api-1-iji8.onrender.com/api/user'),
+    Uri.parse('http://localhost:4000/api/user'),
   );
 
   if (response.statusCode == 200) {
     List<dynamic> jsonList = jsonDecode(response.body);
-    List<Users> usersList = jsonList.map((json) => Users.fromJson(json)).toList();
-    return usersList;
+    // Verifica que jsonList no sea null y sea una lista
+    if (jsonList is List) {
+      List<Users> usersList = jsonList
+          .where((json) => json != null) // Filtra valores nulos
+          .map((json) => Users.fromJson(json))
+          .toList();
+      return usersList;
+    } else {
+      throw Exception('La respuesta de la API no es una lista válida');
+    }
   } else {
     throw Exception('Failed to load users');
   }
 }
 
+
 Future<Users> createUsers(String name, String email, String password) async {
   final response = await http.post(
-    Uri.parse('https://nodejs-api-1-iji8.onrender.com/api/user'),
+    Uri.parse('http://localhost:4000/api/user'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -67,17 +77,21 @@ Future<Users> createUsers(String name, String email, String password) async {
   }
 }
 
-Future<Users> deleteUsers(String id) async {
-  final http.Response response = await http.delete(
-    Uri.parse('https://nodejs-api-1-iji8.onrender.com/api/user/$id'),
+Future<Users> updateUser(String id, String name, String email) async {
+  final response = await http.put(
+    Uri.parse('http://localhost:4000/api/user/$id'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
+    body: jsonEncode(<String, String>{
+      'name': name,
+      'email': email,
+    }),
   );
 
   if (response.statusCode == 200) {
-    return Users.empty();
+    return Users.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {
-    throw Exception('Failed to delete user');
+    throw Exception('Failed to update user');
   }
 }
